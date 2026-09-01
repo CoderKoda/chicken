@@ -1,4 +1,4 @@
-name: Extract Chicken source
+name: Rebrand Chicken to Bread
 
 on:
   push:
@@ -8,29 +8,63 @@ permissions:
   contents: write
 
 jobs:
-  extract:
-    if: github.actor != 'github-actions[bot]'
+  rebrand:
+    if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[bread-rebrand]')
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Extract Chicken 6.0.0
+      - name: Rebrand source tree
+        shell: bash
         run: |
-          tar -xzf chicken-6.0.0.tar.gz
-          if [ -d chicken-6.0.0 ]; then
-            cp -a chicken-6.0.0/. .
-            rm -rf chicken-6.0.0
-          fi
+          set -euo pipefail
 
-      - name: Commit extracted source tree
-        run: |
+          # Keep the original source archive intact as the upstream reference.
+          # Do not modify Git metadata or this workflow while transforming files.
+          mapfile -d '' files < <(git ls-files -z | while IFS= read -r -d '' f; do
+            case "$f" in
+              .git/*|chicken-6.0.0.tar.gz|.github/workflows/extract-source.yml) ;;
+              *) printf '%s\0' "$f" ;;
+            esac
+          done)
+
+          # Rename tracked paths containing the project name first.
+          for old in "${files[@]}"; do
+            new=$(printf '%s' "$old" | sed -e 's/chicken/bread/g' -e 's/Chicken/Bread/g' -e 's/CHICKEN/BREAD/g')
+            if [ "$old" != "$new" ]; then
+              mkdir -p "$(dirname "$new")"
+              git mv -- "$old" "$new"
+            fi
+          done
+
+          # Replace textual occurrences while preserving binary files.
+          while IFS= read -r -d '' file; do
+            if grep -Iq . "$file"; then
+              perl -0pi -e 's/CHICKEN/BREAD/g; s/Chicken/Bread/g; s/chicken/bread/g' "$file"
+            fi
+          done < <(git ls-files -z | while IFS= read -r -d '' f; do
+            case "$f" in
+              .git/*|chicken-6.0.0.tar.gz|.github/workflows/extract-source.yml) ;;
+              *) printf '%s\0' "$f" ;;
+            esac
+          done)
+
+          # Update the repository workflow itself in place.
+          sed -i \
+            -e 's/Extract Chicken source/Rebrand Chicken to Bread/g' \
+            -e 's/Chicken 6.0.0/Bread 6.0.0/g' \
+            .github/workflows/extract-source.yml
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Extract Chicken 6.0.0 source tree [skip ci]"
-            git push
-          fi
+          git commit -m "Rebrand Chicken 6.0.0 as Bread [bread-rebrand]"
+          git push
+
+      - name: Remove one-shot workflow marker files
+        if: always()
+        run: |
+          git status --short
