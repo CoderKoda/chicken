@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme time)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_time.29">Module (scheme time)</a></li></ul></div><h2 id="sec:Module_.28scheme_time.29"><a href="#sec:Module_.28scheme_time.29">Module (scheme time)</a></h2>
+<dl class="defsig">
+<dt class="defsig" id="def:current-second"><span class="sig"><var class="id">current-second</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Returns an inexact number representing the current time on the International Atomic Time (TAI) scale. The value 0.0 represents midnight on January 1, 1970 TAI (equivalent to 8.000082 seconds before midnight Universal Time) and the value 1.0 represents one TAI second later. Neither high accuracy nor high precision are required; in particular, returning Coordinated Universal Time plus a suitable constant might be the best an implementation can do.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:current-jiffy"><span class="sig"><var class="id">current-jiffy</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Returns the number of jiffies as an exact integer that have elapsed since an arbitrary, implementation-defined epoch. A jiffy is an implementation-defined fraction of a second which is defined by the return value of the jiffies-per-second procedure. The starting epoch is guaranteed to be constant during a run of the program, but may vary between runs.</p><p>Rationale: Jiffies are allowed to be implementation-dependent so that current-jiffy can execute with minimum overhead. It should be very likely that a compactly represented integer will suffice as the returned value.  Any particular jiffy size will be inappropriate for some implementations: a microsecond is too long for a very fast machine, while a much smaller unit would force many implementations to return integers which have to be allocated for most calls, rendering current-jiffy less useful for accurate timing measurements.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:jiffies-per-second"><span class="sig"><var class="id">jiffies-per-second</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Returns an exact integer representing the number of jiffies per SI second. This value is an implementation-specified constant.</p><pre>(define (time-length)
+  (let ((list (make-list 100000))
+        (start (current-jiffy)))
+    (length list)
+    (/ (- (current-jiffy) start)
+       (jiffies-per-second))))</pre></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20repl%29.html">Module (scheme repl)</a></p><p>Next: <a href="Module%20%28scheme%20write%29.html">Module (scheme write)</a></p></div></div></body></html>

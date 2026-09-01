@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme file)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_file.29">Module (scheme file)</a></li></ul></div><h2 id="sec:Module_.28scheme_file.29"><a href="#sec:Module_.28scheme_file.29">Module (scheme file)</a></h2>
+<dl class="defsig">
+<dt class="defsig" id="def:call-with-input-file"><span class="sig"><var class="id">call-with-input-file</var> <var class="arg">string</var> <var class="arg">proc</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:call-with-output-file"><span class="sig"><var class="id">call-with-output-file</var> <var class="arg">string</var> <var class="arg">proc</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>It is an error if proc does not accept one argument.</p><p>These procedures obtain a textual port obtained by opening the named file for input or output as if by open-input-file or open-output-file. The port and proc are then passed to a procedure equivalent to call-with-port.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:with-input-from-file"><span class="sig"><var class="id">with-input-from-file</var> <var class="arg">string</var> <var class="arg">thunk</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:with-output-to-file"><span class="sig"><var class="id">with-output-to-file</var> <var class="arg">string</var> <var class="arg">thunk</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The file is opened for input or output as if by open-input-file or open-output-file, and the new port is made to be the value returned by current-input-port or current-output-port (as used by <tt>(read)</tt>, <tt>(write obj)</tt>, and so forth). The thunk is then called with no arguments. When the thunk returns, the port is closed and the previous default is restored. It is an error if thunk does not accept zero arguments. Both procedures return the values yielded by thunk. If an escape procedure is used to escape from the continuation of these procedures, they behave exactly as if the current input or output port had been bound dynamically with parameterize.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:open-input-file"><span class="sig"><var class="id">open-input-file</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:open-binary-input-file"><span class="sig"><var class="id">open-binary-input-file</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Takes a string for an existing file and returns a textual input port or binary input port that is capable of delivering data from the file. If the file does not exist or cannot be opened, an error that satisfies file-error? is signaled.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:open-output-file"><span class="sig"><var class="id">open-output-file</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:open-binary-output-file"><span class="sig"><var class="id">open-binary-output-file</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Takes a string naming an output file to be created and returns a textual output port or binary output port that is capable of writing data to a new file by that name. If a file with the given name already exists, the effect is unspecified. If the file cannot be opened, an error that satisfies file-error? is signaled.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:file-exists.3f"><span class="sig"><var class="id">file-exists?</var> <var class="arg">filename</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>It is an error if filename is not a string.</p><p>The file-exists? procedure returns #t if the named file exists at the time the procedure is called, and #f otherwise.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:delete-file"><span class="sig"><var class="id">delete-file</var> <var class="arg">filename</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>It is an error if filename is not a string.</p><p>The delete-file procedure deletes the named file if it exists and can be deleted, and returns an unspecified value. If the file does not exist or cannot be deleted, an error that satisfies file-error? is signaled.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20complex%29.html">Module (scheme complex)</a></p><p>Next: <a href="Module%20%28scheme%20eval%29.html">Module (scheme eval)</a></p></div></div></body></html>

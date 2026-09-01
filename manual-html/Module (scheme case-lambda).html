@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme case-lambda)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_case-lambda.29">Module (scheme case-lambda)</a></li></ul></div><h2 id="sec:Module_.28scheme_case-lambda.29"><a href="#sec:Module_.28scheme_case-lambda.29">Module (scheme case-lambda)</a></h2>
+<dl class="defsig">
+<dt class="defsig" id="def:case-lambda"><span class="sig"><tt>(case-lambda &lt;clause&gt; ...)</tt></span><span class="type">syntax</span></dt>
+<dd class="defsig"><p>Syntax: Each &lt;clause&gt; is of the form (&lt;formals&gt; &lt;body&gt;), where &lt;formals&gt; and &lt;body&gt; have the same syntax as in a lambda expression.</p><p>Semantics: A case-lambda expression evaluates to a procedure that accepts a variable number of arguments and is lexically scoped in the same manner as a procedure resulting from a lambda expression. When the procedure is called, the first &lt;clause&gt; for which the arguments agree with &lt;formals&gt; is selected, where agreement is specified as for the &lt;formals&gt; of a lambda expression. The variables of &lt;formals&gt; are bound to fresh locations, the values of the arguments are stored in those locations, the &lt;body&gt; is evaluated in the extended environment, and the results of &lt;body&gt; are returned as the results of the procedure call.</p><p>It is an error for the arguments not to agree with the &lt;formals&gt; of any &lt;clause&gt;.</p><pre>(define range
+  (case-lambda
+   ((e) (range 0 e))
+   ((b e) (do ((r '() (cons e r))
+               (e (- e 1) (- e 1)))
+              ((&lt; e b) r)))))
+
+(range 3)     ==&gt; (0 1 2)
+(range 3 5)   ==&gt; (3 4)</pre></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20base%29.html">Module (scheme base)</a></p><p>Next: <a href="Module%20%28scheme%20char%29.html">Module (scheme char)</a></p></div></div></body></html>

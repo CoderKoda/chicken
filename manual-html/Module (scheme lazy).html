@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme lazy)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_lazy.29">Module (scheme lazy)</a></li></ul></div><h2 id="sec:Module_.28scheme_lazy.29"><a href="#sec:Module_.28scheme_lazy.29">Module (scheme lazy)</a></h2><p>Delayed evaluation</p>
+<dl class="defsig">
+<dt class="defsig" id="def:delay"><span class="sig"><tt>(delay &lt;expression&gt;)</tt></span><span class="type">syntax</span></dt>
+<dd class="defsig"><p>Semantics: The delay construct is used together with the procedure force to implement lazy evaluation or call by need. <tt>(delay &lt;expression&gt;)</tt> returns an object called a promise which at some point in the future can be asked (by the force procedure) to evaluate &lt;expression&gt;, and deliver the resulting value. The effect of &lt;expression&gt; returning multiple values is unspecified.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:delay-force"><span class="sig"><tt>(delay-force &lt;expression&gt;)</tt></span><span class="type">syntax</span></dt>
+<dd class="defsig"><p>Semantics: The expression <tt>(delay-force expression)</tt> is conceptually similar to <tt>(delay (force expression))</tt>, with the difference that forcing the result of delay-force will in effect result in a tail call to <tt>(force expression)</tt>, while forcing the result of <tt>(delay (force expression))</tt> might not. Thus iterative lazy algorithms that might result in a long series of chains of delay and force can be rewritten using delay-force to prevent consuming unbounded space during evaluation.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:force"><span class="sig"><tt>(force promise)</tt></span><span class="type">syntax</span></dt>
+<dd class="defsig"><p>The force procedure forces the value of a promise created by delay, delay-force, or make-promise.If no value has been computed for the promise, then a value is computed and returned. The value of the promise must be cached (or &quot;memoized&quot;) so that if it is forced a second time, the previously computed value is returned. Consequently, a delayed expression is evaluated using the parameter values and exception handler of the call to force which first requested its value. If promise is not a promise, it may be returned unchanged.</p><pre>(force (delay (+ 1 2)))    ==&gt; 3
+(let ((p (delay (+ 1 2))))
+  (list (force p) (force p))) ==&gt;  (3 3)
+
+(define integers
+  (letrec ((next
+            (lambda (n)
+              (delay (cons n (next (+ n 1)))))))
+    (next 0)))
+(define head
+  (lambda (stream) (car (force stream))))
+(define tail
+  (lambda (stream) (cdr (force stream))))
+
+(head (tail (tail integers))) ==&gt;  2</pre><p>The following example is a mechanical transformation of a lazy stream-filtering algorithm into Scheme. Each call to a constructor is wrapped in delay, and each argument passed to a deconstructor is wrapped in force. The use of <tt>(delay-force ...)</tt> instead of <tt>(delay (force ...))</tt> around the body of the procedure ensures that an ever-growing sequence of pending promises does not exhaust available storage, because force will in effect force such sequences iteratively.</p><pre>(define (stream-filter p? s)
+  (delay-force
+   (if (null? (force s))
+       (delay '())
+       (let ((h (car (force s)))
+             (t (cdr (force s))))
+         (if (p? h)
+             (delay (cons h (stream-filter p? t)))
+             (stream-filter p? t))))))
+
+(head (tail (tail (stream-filter odd? integers)))) ==&gt; 5</pre><p>The following examples are not intended to illustrate good programming style, as delay, force, and delay-force are mainly intended for programs written in the functional style. However, they do illustrate the property that only one value is computed for a promise, no matter how many times it is forced.</p><pre>(define count 0)
+(define p
+  (delay (begin (set! count (+ count 1))
+                (if (&gt; count x)
+                    count
+                    (force p)))))
+(define x 5)
+p                      ==&gt;  a promise
+(force p)              ==&gt;  6
+p                      ==&gt;  a promise, still
+(begin (set! x 10)
+       (force p))      ==&gt;  6</pre><p>Various extensions to this semantics of delay, force and delay-force are supported in some implementations:</p><ul><li>Calling force on an object that is not a promise may simply return the object.</li>
+<li>It may be the case that there is no means by which a promise can be operationally distinguished from its forced value. That is, expressions like the following may evaluate to either #t or to #f, depending on the implementation:</li>
+</ul>
+<pre>(eqv? (delay 1) 1)           ==&gt;  unspecified
+(pair? (delay (cons 1 2)))   ==&gt;  unspecified</pre><ul><li>Implementations may implement “implicit forcing,” where the value of a promise is forced by procedures that operate only on arguments of a certain type, like cdr and *. However, procedures that operate uniformly on their arguments, like list, must not force them.</li>
+</ul>
+<pre>(+ (delay (* 3 7)) 13)   ==&gt;  unspecified
+   (car
+   (list (delay (* 3 7)) 13))     ==&gt; a promise</pre></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:promise.3f"><span class="sig"><var class="id">promise?</var> <var class="arg">obj</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The promise? procedure returns #t if its argument is a promise, and #f otherwise. Note that promises are not necessarily disjoint from other Scheme types such as procedures.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:make-promise"><span class="sig"><var class="id">make-promise</var> <var class="arg">obj</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The make-promise procedure returns a promise which, when forced, will return obj. It is similar to delay, but does not delay its argument: it is a procedure rather than syntax. If obj is already a promise, it is returned.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20inexact%29.html">Module (scheme inexact)</a></p><p>Next: <a href="Module%20%28scheme%20load%29.html">Module (scheme load)</a></p></div></div></body></html>

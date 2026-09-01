@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme inexact)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_inexact.29">Module (scheme inexact)</a></li></ul></div><h2 id="sec:Module_.28scheme_inexact.29"><a href="#sec:Module_.28scheme_inexact.29">Module (scheme inexact)</a></h2><p>The R7RS (scheme inexact) library exports procedures which are typically only useful with inexact values.</p>
+<dl class="defsig">
+<dt class="defsig" id="def:exp"><span class="sig"><var class="id">exp</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:log"><span class="sig"><var class="id">log</var> <var class="arg">z</var> <var class="dsssl">#!optional</var> <var class="arg">z2</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:sin"><span class="sig"><var class="id">sin</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:cos"><span class="sig"><var class="id">cos</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:tan"><span class="sig"><var class="id">tan</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:asin"><span class="sig"><var class="id">asin</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:acos"><span class="sig"><var class="id">acos</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:atan"><span class="sig"><var class="id">atan</var> <var class="arg">x</var> <var class="dsssl">#!optional</var> <var class="arg">y</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>These procedures compute the usual transcendental functions. The log procedure computes the natural logarithm of z (not the base ten logarithm) if a single argument is given, or the base-z2 logarithm of z if two arguments are given. The asin, acos, and atan procedures compute arcsine (sin^−1), arc-cosine (cos^−1), and arctangent (tan^−1), respectively. The two-argument variant of atan computes <tt>(angle (make-rectangular x y))</tt> (see below), even in implementations that don’t support complex numbers.</p><p>In general, the mathematical functions log, arcsine, arc-cosine, and arctangent are multiply defined. The value of log z is defined to be the one whose imaginary part lies in the range from −π (inclusive if -0.0 is distinguished, exclusive otherwise) to π (inclusive). The value of log 0 is mathematically undefined. With log defined this way, the values of sin^−1 z, cos^−1 z, and tan^−1 z are according to the following formulæ:</p><pre>sin^−1 z = −i * log (i * z + (1 − z^2)^1/2)
+
+cos^−1 z = π/2 − sin^−1 z
+
+tan^−1 z = (log (1 + i * z) − log (1 − i * z)) / (2 * i)</pre><p>However, (log 0.0) returns -inf.0 (and (log -0.0) returns -inf.0+π*i) if the implementation supports infinities (and -0.0).</p><p>The range of (atan x y) is as in the following table. The asterisk (*) indicates that the entry applies to implementations that distinguish minus zero.</p><pre>  y condition x condition range of result r
+  y = 0.0     x &gt; 0.0     0.0
+∗ y = + 0.0   x &gt; 0.0     + 0.0
+∗ y = −0.0    x &gt; 0.0     −0.0
+  y &gt; 0.0     x &gt; 0.0     0.0 &lt; r &lt; π/2
+  y &gt; 0.0     x = 0.0     π/2
+  y &gt; 0.0     x &lt; 0.0     π/2 &lt; r &lt; π
+  y = 0.0     x &lt; 0       π
+∗ y = + 0.0   x &lt; 0.0     π
+∗ y = −0.0    x &lt; 0.0     −π
+  y &lt; 0.0     x &lt; 0.0     −π&lt; r&lt; −π/2
+  y &lt; 0.0     x = 0.0     −π/2
+  y &lt; 0.0     x &gt; 0.0     −π/2 &lt; r&lt; 0.0
+  y = 0.0     x = 0.0     undefined
+∗ y = + 0.0   x = + 0.0   + 0.0
+∗ y = −0.0    x = + 0.0   −0.0
+∗ y = + 0.0   x = −0.0    π
+∗ y = −0.0    x = −0.0    −π
+∗ y = + 0.0   x = 0       π/2
+∗ y = −0.0    x = 0       −π/2</pre><p>When it is possible, these procedures produce a real result from a real argument.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20eval%29.html">Module (scheme eval)</a></p><p>Next: <a href="Module%20%28scheme%20lazy%29.html">Module (scheme lazy)</a></p></div></div></body></html>

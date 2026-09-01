@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme char)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_char.29">Module (scheme char)</a></li></ul></div><h2 id="sec:Module_.28scheme_char.29"><a href="#sec:Module_.28scheme_char.29">Module (scheme char)</a></h2><p>R7RS Operations on characters.</p>
+<dl class="defsig">
+<dt class="defsig" id="def:char-ci.3d.3f"><span class="sig"><tt>(char-ci=? char[1] char[2] char[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-ci.3e.3f"><span class="sig"><tt>(char-ci&gt;? char[1] char[2] char[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-ci.3c.3f"><span class="sig"><tt>(char-ci&lt;? char[1] char[2] char[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-ci.3e.3d.3f"><span class="sig"><tt>(char-ci&gt;=? char[1] char[2] char[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-ci.3c.3d.3f"><span class="sig"><tt>(char-ci&lt;=? char[1] char[2] char[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>These procedures are similar to char=?​ ​et cetera, but they treat upper case and lower case letters as the same. For example, <tt>(char-ci=?​ ​#\A #\a)</tt> returns #t.</p><p>Specifically, these procedures behave as if char-foldcase were applied to their arguments before they were compared.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:char-alphabetic.3f"><span class="sig"><var class="id">char-alphabetic?</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-numeric.3f"><span class="sig"><var class="id">char-numeric?</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-whitespace.3f"><span class="sig"><var class="id">char-whitespace?</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-upper-case.3f"><span class="sig"><var class="id">char-upper-case?</var> <var class="arg">letter</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-lower-case.3f"><span class="sig"><var class="id">char-lower-case?</var> <var class="arg">letter</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>These procedures return #t if their arguments are alphabetic, numeric, whitespace, upper case, or lower case characters, respectively, otherwise they return #f. Specifically, they must return #t when applied to characters with the Unicode properties Alphabetic, Numeric_Type=Decimal, White_Space, Uppercase, and Lowercase respectively, and #f when applied to any other Unicode characters. Note that many Unicode characters are alphabetic but neither upper nor lower case.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:digit-value"><span class="sig"><var class="id">digit-value</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>This procedure returns the numeric value (0 to 9) of its argument if it is a numeric digit (that is, if char-numeric? returns #t), or #f on any other character.</p><pre>(digit-value #\3)  ==&gt; 3
+(digit-value #\x0664)  ==&gt; 4
+(digit-value #\x0AE6)  ==&gt; 0
+(digit-value #\x0EA6)  ==&gt; #f</pre></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:char-upcase"><span class="sig"><var class="id">char-upcase</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-downcase"><span class="sig"><var class="id">char-downcase</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:char-foldcase"><span class="sig"><var class="id">char-foldcase</var> <var class="arg">char</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The char-upcase procedure, given an argument that is the lowercase part of a Unicode casing pair, returns the uppercase member of the pair. Note that language-sensitive casing pairs are not used. If the argument is not the lowercase member of such a pair, it is returned.</p><p>The char-downcase procedure, given an argument that is the uppercase part of a Unicode casing pair, returns the lowercase member of the pair. Note that language-sensitive casing pairs are not used. If the argument is not the uppercase member of such a pair, it is returned.</p><p>The char-foldcase procedure applies the Unicode simple case-folding algorithm to its argument and returns the result. Note that language-sensitive folding is not used. If the character that results from folding is not supported by the implementation, the argument is returned. See UAX #44 (part of the Unicode Standard) for details.</p><p>Note that many Unicode lowercase characters do not have uppercase equivalents.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:string-ci.3d.3f"><span class="sig"><tt>(string-ci=? string[1] string[2] string[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-ci.3c.3f"><span class="sig"><tt>(string-ci&lt;? string[1] string[2] string[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-ci.3e.3f"><span class="sig"><tt>(string-ci&gt;? string[1] string[2] string[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-ci.3c.3d.3f"><span class="sig"><tt>(string-ci&lt;=? string[1] string[2] string[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-ci.3e.3d.3f"><span class="sig"><tt>(string-ci&gt;=? string[1] string[2] string[3] ...)</tt></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The &quot;-ci&quot; procedures behave as if they applied string-foldcase to their arguments before invoking the corresponding procedures without “-ci”.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:string-upcase"><span class="sig"><var class="id">string-upcase</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-downcase"><span class="sig"><var class="id">string-downcase</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:string-foldcase"><span class="sig"><var class="id">string-foldcase</var> <var class="arg">string</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>These procedures apply the Unicode full string uppercasing, lowercasing, and case-folding algorithms to their arguments and return the result. In certain cases, the result differs in length from the argument. If the result is equal to the argument in the sense of string=?, the argument may be returned. Note that language-sensitive mappings and foldings are not used. The Unicode Standard prescribes special treatment of the Greek letter Σ, whose normal lower-case form is σ but which becomes ς at the end of a word. See UAX #44 (part of the Unicode Standard) for details. However, implementations of string-downcase are not required to provide this behavior, and may choose to change Σ to σ in all cases.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20case-lambda%29.html">Module (scheme case-lambda)</a></p><p>Next: <a href="Module%20%28scheme%20complex%29.html">Module (scheme complex)</a></p></div></div></body></html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme complex)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_complex.29">Module (scheme complex)</a></li></ul></div><h2 id="sec:Module_.28scheme_complex.29"><a href="#sec:Module_.28scheme_complex.29">Module (scheme complex)</a></h2><p>R7RS Operations on complex numbers.</p>
+<dl class="defsig">
+<dt class="defsig" id="def:make-rectangular"><span class="sig"><tt>(make-rectangular x[1] x[2])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-polar"><span class="sig"><tt>(make-polar x[3] x[4])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:real-part"><span class="sig"><var class="id">real-part</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:imag-part"><span class="sig"><var class="id">imag-part</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:magnitude"><span class="sig"><var class="id">magnitude</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:angle"><span class="sig"><var class="id">angle</var> <var class="arg">z</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Let x[1], x[2], x[3] and x[4] be real numbers and z be a complex number such that</p><pre>  z  =  x[1]  +  x[2] * i =  x[3] * e^(i * x[4])</pre><p>Then all of</p><pre>(make-rectangular x[1] x[2])   ==&gt; z
+(make-polar x[3] x[4])         ==&gt; z
+(real-part z)                  ==&gt; x[1]
+(imag-part z)                  ==&gt; x[2]
+(magnitude z)                  ==&gt; |x[3]|
+(angle z)                      ==&gt; x[angle]</pre><p>are true, where</p><pre>   −π ≤ x[angle] ≤ π with x[angle] = x[4] + 2 * π * n for some integer n.</pre><p>The make-polar procedure may return an inexact complex number even if its arguments are exact. The real-part and imag-part procedures may return exact real numbers when applied to an inexact complex number if the corresponding argument passed to make-rectangular was exact.</p><p>Rationale: The magnitude procedure is the same as abs for a real argument, but abs is in the base library, whereas magnitude is in the optional complex library.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20char%29.html">Module (scheme char)</a></p><p>Next: <a href="Module%20%28scheme%20cxr%29.html">Module (scheme cxr)</a></p></div></div></body></html>

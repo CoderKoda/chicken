@@ -1,0 +1,62 @@
+;;;; setup.defaults - defaults for chicken-install -*- Scheme -*-
+
+
+;; version-number of the defaults file - checked by "chicken-install"
+;  when defaults are loaded
+
+(version 2)
+
+
+;; list of locations (eggs stored in the local fileystem)
+;
+; (location DIRECTORY ...)
+;
+; Note that these override eggs from servers.
+
+
+;; list of servers in the order in which they will be processed
+;
+; (server URL ...)
+;
+; URL may be an alias (see below) or a real URL.
+
+(server "egg-server-1")
+(server "egg-server-2")
+(server "egg-server-3")
+
+
+;; extension-mappings
+;
+; (map (EXTENSIONNAME ... -> OTHEREXTENSIONNAME ...))
+
+(map (srfi-4 ->))
+(map (r7rs ->))
+
+
+;; aliases for servers
+;
+; (alias (NAME REALNAME) ...)
+
+(alias
+ ("egg-server-1" "http://egg-server-1.call-cc.org/cgi-bin/henrietta.cgi")
+ ("egg-server-2" "http://egg-server-2.call-cc.org/cgi-bin/henrietta.cgi")
+ ("egg-server-3" "http://egg-server-3.call-cc.org/cgi-bin/henrietta.cgi"))
+
+
+;; overrides
+;
+; (override (NAME VERSION) ...)
+;
+; or:
+;
+; (override FILENAME)
+
+
+;; hack
+;
+; (hack EXPR)
+;
+;   EXPR should evaluate to a procedure of the type, where the
+;   procedure is of type EGGNAME DEPENDENCIES -> DEPENDENCIES' and
+;   may modify the dependencies-list of an arbitrary egg. All
+;   hack procedures are invoked in the order given here

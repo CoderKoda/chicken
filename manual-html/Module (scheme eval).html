@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme eval)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_eval.29">Module (scheme eval)</a>
+<ul>
+<li><a href="#sec:environment">environment</a></li>
+<li><a href="#sec:eval">eval</a></li></ul></li></ul></div><h2 id="sec:Module_.28scheme_eval.29"><a href="#sec:Module_.28scheme_eval.29">Module (scheme eval)</a></h2><p>This module provides R7RS procedures to evaluate expressions dynamically.</p><h3 id="sec:environment"><a href="#sec:environment">environment</a></h3>
+<dl class="defsig">
+<dt class="defsig" id="def:environment"><span class="sig"><var class="id">environment</var> <var class="arg">LIST</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>This procedure returns a specifier for the environment that results by starting with an empty environment and then importing each list, considered as an import set, into it. (See section 5.6 of R7RS for a description of import sets.) The bindings of the environment represented by the specifier are immutable, as is the environment itself.</p></dd></dl><h3 id="sec:eval"><a href="#sec:eval">eval</a></h3>
+<dl class="defsig">
+<dt class="defsig" id="def:eval"><span class="sig"><var class="id">eval</var> <var class="arg">EXPR-OR-DEF</var> <var class="dsssl">#!optional</var> <var class="arg">ENVIRONMENT-SPECIFIER</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>If EXPR-OR-DEF is an expression, it is evaluated in the specified environment and its values are returned. If it is a definition, the specified identifier(s) are defined in the specified environment, provided the environment is not immutable.</p><p>The <var class="arg">ENVIRONMENT-SPECIFIER</var> is optional, and if not provided it defaults to the value of <tt>(interaction-environment)</tt>.  This is a CHICKEN extension to R7RS, which, though strictly nonportable, is very common among Scheme implementations.</p><pre>(eval '(* 7 3) (environment '(scheme base)))
+    ==&gt; 21
+
+(let ((f (eval '(lambda (f x) (f x x))
+               (null-environment 5))))
+  (f + 10))
+    ==&gt; 20</pre></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20file%29.html">Module (scheme file)</a></p><p>Next: <a href="Module%20%28scheme%20inexact%29.html">Module (scheme inexact)</a></p></div></div></body></html>

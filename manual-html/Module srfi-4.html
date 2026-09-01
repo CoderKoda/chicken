@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module srfi-4</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_srfi-4">Module srfi-4</a></li></ul></div><h2 id="sec:Module_srfi-4"><a href="#sec:Module_srfi-4">Module srfi-4</a></h2><p>This module only reexports a subset of <a href="Module%20%28chicken%20number-vector%29.html">(chicken number-vector)</a>. Also see the <a href="http://srfi.schemers.org/srfi-4/srfi-4.html">original SRFI-4 document</a>.</p><p>When loaded, the feature identifier <tt>srfi-4</tt> is defined.</p><p>The module exports the following identifiers:</p>
+<dl class="defsig">
+<dt class="defsig" id="def:u8vector.3f"><span class="sig"><var class="id">u8vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector.3f"><span class="sig"><var class="id">s8vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector.3f"><span class="sig"><var class="id">u16vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector.3f"><span class="sig"><var class="id">s16vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector.3f"><span class="sig"><var class="id">u32vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector.3f"><span class="sig"><var class="id">s32vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector.3f"><span class="sig"><var class="id">u64vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector.3f"><span class="sig"><var class="id">s64vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector.3f"><span class="sig"><var class="id">f32vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector.3f"><span class="sig"><var class="id">f64vector?</var> <var class="arg">OBJ</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-u8vector"><span class="sig"><tt>(make-u8vector N [U8VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-s8vector"><span class="sig"><tt>(make-s8vector N [S8VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-u16vector"><span class="sig"><tt>(make-u16vector N [U16VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-s16vector"><span class="sig"><tt>(make-s16vector N [S16VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-u32vector"><span class="sig"><tt>(make-u32vector N [U32VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-s32vector"><span class="sig"><tt>(make-s32vector N [S32VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-u64vector"><span class="sig"><tt>(make-u64vector N [U64VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-s64vector"><span class="sig"><tt>(make-s64vector N [S64VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-f32vector"><span class="sig"><tt>(make-f32vector N [F32VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:make-f64vector"><span class="sig"><tt>(make-f64vector N [F64VALUE NONGC FINALIZE])</tt></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u8vector"><span class="sig"><var class="id">u8vector</var> <var class="arg">U8VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector"><span class="sig"><var class="id">s8vector</var> <var class="arg">S8VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector"><span class="sig"><var class="id">u16vector</var> <var class="arg">U16VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector"><span class="sig"><var class="id">s16vector</var> <var class="arg">S16VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector"><span class="sig"><var class="id">u32vector</var> <var class="arg">U32VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector"><span class="sig"><var class="id">s32vector</var> <var class="arg">S32VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector"><span class="sig"><var class="id">u64vector</var> <var class="arg">U64VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector"><span class="sig"><var class="id">s64vector</var> <var class="arg">S64VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector"><span class="sig"><var class="id">f32vector</var> <var class="arg">F32VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector"><span class="sig"><var class="id">f64vector</var> <var class="arg">F64VALUE</var> <var class="arg">...</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u8vector-length"><span class="sig"><var class="id">u8vector-length</var> <var class="arg">U8VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector-length"><span class="sig"><var class="id">s8vector-length</var> <var class="arg">S8VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector-length"><span class="sig"><var class="id">u16vector-length</var> <var class="arg">U16VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector-length"><span class="sig"><var class="id">s16vector-length</var> <var class="arg">S16VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector-length"><span class="sig"><var class="id">u32vector-length</var> <var class="arg">U32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector-length"><span class="sig"><var class="id">s32vector-length</var> <var class="arg">S32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector-length"><span class="sig"><var class="id">u64vector-length</var> <var class="arg">U64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector-length"><span class="sig"><var class="id">s64vector-length</var> <var class="arg">S64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector-length"><span class="sig"><var class="id">f32vector-length</var> <var class="arg">F32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector-length"><span class="sig"><var class="id">f64vector-length</var> <var class="arg">F64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u8vector-ref"><span class="sig"><var class="id">u8vector-ref</var> <var class="arg">U8VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector-ref"><span class="sig"><var class="id">s8vector-ref</var> <var class="arg">S8VECTOR</var> <var class="arg">i</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector-ref"><span class="sig"><var class="id">u16vector-ref</var> <var class="arg">U16VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector-ref"><span class="sig"><var class="id">s16vector-ref</var> <var class="arg">S16VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector-ref"><span class="sig"><var class="id">u32vector-ref</var> <var class="arg">U32VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector-ref"><span class="sig"><var class="id">s32vector-ref</var> <var class="arg">S32VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector-ref"><span class="sig"><var class="id">u64vector-ref</var> <var class="arg">U64VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector-ref"><span class="sig"><var class="id">s64vector-ref</var> <var class="arg">S64VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector-ref"><span class="sig"><var class="id">f32vector-ref</var> <var class="arg">F32VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector-ref"><span class="sig"><var class="id">f64vector-ref</var> <var class="arg">F64VECTOR</var> <var class="arg">I</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u8vector-set.21"><span class="sig"><var class="id">u8vector-set!</var> <var class="arg">U8VECTOR</var> <var class="arg">I</var> <var class="arg">U8VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector-set.21"><span class="sig"><var class="id">s8vector-set!</var> <var class="arg">S8VECTOR</var> <var class="arg">I</var> <var class="arg">S8VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector-set.21"><span class="sig"><var class="id">u16vector-set!</var> <var class="arg">U16VECTOR</var> <var class="arg">I</var> <var class="arg">U16VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector-set.21"><span class="sig"><var class="id">s16vector-set!</var> <var class="arg">S16VECTOR</var> <var class="arg">I</var> <var class="arg">S16VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector-set.21"><span class="sig"><var class="id">u32vector-set!</var> <var class="arg">U32VECTOR</var> <var class="arg">I</var> <var class="arg">U32VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector-set.21"><span class="sig"><var class="id">s32vector-set!</var> <var class="arg">S32VECTOR</var> <var class="arg">I</var> <var class="arg">S32VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector-set.21"><span class="sig"><var class="id">u64vector-set!</var> <var class="arg">U64VECTOR</var> <var class="arg">I</var> <var class="arg">U64VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector-set.21"><span class="sig"><var class="id">s64vector-set!</var> <var class="arg">S64VECTOR</var> <var class="arg">I</var> <var class="arg">S64VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector-set.21"><span class="sig"><var class="id">f32vector-set!</var> <var class="arg">F32VECTOR</var> <var class="arg">I</var> <var class="arg">F32VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector-set.21"><span class="sig"><var class="id">f64vector-set!</var> <var class="arg">F64VECTOR</var> <var class="arg">I</var> <var class="arg">F64VALUE</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u8vector-.3elist"><span class="sig"><var class="id">u8vector-&gt;list</var> <var class="arg">U8VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s8vector-.3elist"><span class="sig"><var class="id">s8vector-&gt;list</var> <var class="arg">S8VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u16vector-.3elist"><span class="sig"><var class="id">u16vector-&gt;list</var> <var class="arg">U16VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s16vector-.3elist"><span class="sig"><var class="id">s16vector-&gt;list</var> <var class="arg">S16VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u32vector-.3elist"><span class="sig"><var class="id">u32vector-&gt;list</var> <var class="arg">U32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s32vector-.3elist"><span class="sig"><var class="id">s32vector-&gt;list</var> <var class="arg">S32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:u64vector-.3elist"><span class="sig"><var class="id">u64vector-&gt;list</var> <var class="arg">U64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:s64vector-.3elist"><span class="sig"><var class="id">s64vector-&gt;list</var> <var class="arg">S64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f32vector-.3elist"><span class="sig"><var class="id">f32vector-&gt;list</var> <var class="arg">F32VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:f64vector-.3elist"><span class="sig"><var class="id">f64vector-&gt;list</var> <var class="arg">F64VECTOR</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3eu8vector"><span class="sig"><var class="id">list-&gt;u8vector</var> <var class="arg">U8LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3es8vector"><span class="sig"><var class="id">list-&gt;s8vector</var> <var class="arg">S8LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3eu16vector"><span class="sig"><var class="id">list-&gt;u16vector</var> <var class="arg">U16LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3es16vector"><span class="sig"><var class="id">list-&gt;s16vector</var> <var class="arg">S16LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3eu32vector"><span class="sig"><var class="id">list-&gt;u32vector</var> <var class="arg">U32LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3es32vector"><span class="sig"><var class="id">list-&gt;s32vector</var> <var class="arg">S32LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3eu64vector"><span class="sig"><var class="id">list-&gt;u64vector</var> <var class="arg">U64LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3es64vector"><span class="sig"><var class="id">list-&gt;s64vector</var> <var class="arg">S64LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3ef32vector"><span class="sig"><var class="id">list-&gt;f32vector</var> <var class="arg">F32LIST</var></span><span class="type">procedure</span></dt>
+<dt class="defsig" id="def:list-.3ef64vector"><span class="sig"><var class="id">list-&gt;f64vector</var> <var class="arg">F64LIST</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"></dd></dl><hr /><p>Previous: <a href="Module%20%28chicken%20version%29.html">Module (chicken version)</a></p><p>Next: <a href="Interface%20to%20external%20functions%20and%20variables.html">Interface to external functions and variables</a></p></div></div></body></html>

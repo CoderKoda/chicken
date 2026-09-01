@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (chicken version)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28chicken_version.29">Module (chicken version)</a>
+<ul>
+<li><a href="#sec:version.3e.3d.3f">version&gt;=?</a></li></ul></li></ul></div><h2 id="sec:Module_.28chicken_version.29"><a href="#sec:Module_.28chicken_version.29">Module (chicken version)</a></h2><p>This module provides the <tt>version&gt;=?</tt> procedure for version comparison.</p><h3 id="sec:version.3e.3d.3f"><a href="#sec:version.3e.3d.3f">version&gt;=?</a></h3>
+<dl class="defsig">
+<dt class="defsig" id="def:version.3e.3d.3f"><span class="sig"><var class="id">version&gt;=?</var> <var class="arg">v1</var> <var class="arg">v2</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Return <tt>#t</tt> if <var class="arg">v1</var> is greater than or equal to <var class="arg">v2</var>, where both arguments are assumed to encode version numbers. The values can be of any type and will be converted to strings (using <tt>-&gt;string</tt>) if necessary. The comparison accepts separators like <tt>&quot;.&quot;</tt>, <tt>&quot;-&quot;</tt>, etc. and compares sub-elements numerically, if possible.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28chicken%20type%29.html">Module (chicken type)</a></p><p>Next: <a href="Module%20srfi-4.html">Module srfi-4</a></p></div></div></body></html>

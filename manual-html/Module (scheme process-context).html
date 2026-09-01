@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme process-context)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_process-context">Module (scheme process-context</a></li></ul></div><h2 id="sec:Module_.28scheme_process-context"><a href="#sec:Module_.28scheme_process-context">Module (scheme process-context</a></h2>
+<dl class="defsig">
+<dt class="defsig" id="def:command-line"><span class="sig"><var class="id">command-line</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Returns the command line passed to the process as a list of strings. The first string corresponds to the command name. It is an error to mutate any of these strings.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:exit"><span class="sig"><var class="id">exit</var> <var class="dsssl">#!optional</var> <var class="arg">obj</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Runs all outstanding dynamic-wind after procedures, terminates the running program, and communicates an exit value to the operating system. If no argument is supplied, or if obj is #t, the exit procedure should communicate to the operating system that the program exited normally. If obj is #f, the exit procedure should communicate to the operating system that the program exited abnormally. Otherwise, exit should translate obj into an appropriate exit value for the operating system, if possible.</p><p>The exit procedure must not signal an exception or return to its continuation.</p><p>Note: Because of the requirement to run handlers, this procedure is not just the operating system's exit procedure.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:emergency-exit"><span class="sig"><var class="id">emergency-exit</var> <var class="dsssl">#!optional</var> <var class="arg">obj</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Terminates the program without running any outstanding dynamic-wind after procedures and communicates an exit value to the operating system in the same manner as exit.</p><p>Note: The emergency-exit procedure corresponds to the _exit procedure in Windows and Posix.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:get-environment-variable"><span class="sig"><var class="id">get-environment-variable</var> <var class="arg">name</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Many operating systems provide each running process with an environment consisting of environment variables. (This environment is not to be confused with the Scheme environments that can be passed to eval) Both the name and value of an environment variable are strings. The procedure get-environment-variable returns the value of the environment variable name, or #f if the named environment variable is not found. It may use locale information to encode the name and decode the value of the environment variable. It is an error if get-environment-variable can’t decode the value. It is also an error to mutate the resulting string.</p><pre>(get-environment-variable &quot;PATH&quot;)
+==&gt; &quot;/usr/local/bin:/usr/bin:/bin&quot;</pre></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:get-environment-variables"><span class="sig"><var class="id">get-environment-variables</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Returns the names and values of all the environment variables as an alist, where the car of each entry is the name of an environment variable and the cdr is its value, both as strings. The order of the list is unspecified. It is an error to mutate any of these strings or the alist itself.</p><pre>(get-environment-variables)
+==&gt; ((&quot;USER&quot; . &quot;root&quot;) (&quot;HOME&quot; . &quot;/&quot;))</pre></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20lazy%29.html">Module (scheme lazy)</a></p><p>Next: <a href="Module%20%28scheme%20read%29.html">Module (scheme read)</a></p></div></div></body></html>

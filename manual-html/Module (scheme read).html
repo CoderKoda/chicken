@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme read)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_read.29">Module (scheme read)</a></li></ul></div><h2 id="sec:Module_.28scheme_read.29"><a href="#sec:Module_.28scheme_read.29">Module (scheme read)</a></h2>
+<dl class="defsig">
+<dt class="defsig" id="def:read"><span class="sig"><var class="id">read</var> <var class="dsssl">#!optional</var> <var class="arg">port</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>If port is omitted from <tt>read</tt>, it defaults to the value returned by (current-input-port). It is an error to attempt an input operation on a closed port.</p><p>The read procedure converts external representations of Scheme objects into the objects themselves. That is, it is a parser for the non-terminal &lt;datum&gt;. It returns the next object parsable from the given textual input port, updating port to point to the first character past the end of the external representation of the object.</p><p>If an end of file is encountered in the input before any characters are found that can begin an object, then an end-of-file object is returned. The port remains open, and further attempts to read will also return an end-of-file object. If an end of file is encountered after the beginning of an object’s external representation, but the external representation is incomplete and therefore not parsable, an error that satisfies read-error? is signaled.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20process-context%29.html">Module (scheme process-context)</a></p><p>Next: <a href="Module%20%28scheme%20repl%29.html">Module (scheme repl)</a></p></div></div></body></html>

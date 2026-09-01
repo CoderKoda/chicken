@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="manual.css" type="text/css" />
+<title>Chicken &raquo; Module (scheme write)</title>
+<meta name="viewport" content="initial-scale=1" /></head>
+<body>
+<div id="body">
+<div id="main">
+<div id="toc">
+<h2 class="toc">TOC &raquo;</h2>
+<ul class="toc">
+<li><a href="#sec:Module_.28scheme_write.29">Module (scheme write)</a></li></ul></div><h2 id="sec:Module_.28scheme_write.29"><a href="#sec:Module_.28scheme_write.29">Module (scheme write)</a></h2><p>If port is omitted from any output procedure, it defaults to the value returned by (current-output-port). It is an error to attempt an output operation on a closed port.</p>
+<dl class="defsig">
+<dt class="defsig" id="def:write"><span class="sig"><var class="id">write</var> <var class="arg">obj</var> <var class="dsssl">#!optional</var> <var class="arg">port9</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Writes a representation of obj to the given textual output port. Strings that appear in the written representation are enclosed in quotation marks, and within those strings backslash and quotation mark characters are escaped by backslashes. Symbols that contain non-ASCII characters are escaped with vertical lines. Character objects are written using the #\ notation.</p><p>If obj contains cycles which would cause an infinite loop using the normal written representation, then at least the objects that form part of the cycle must be represented using datum labels. Datum labels are not be used if there are no cycles.</p><p>The write procedure returns an unspecified value.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:write-shared"><span class="sig"><var class="id">write-shared</var> <var class="arg">obj</var> <var class="dsssl">#!optional</var> <var class="arg">port</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The write-shared procedure is the same as write, except that shared structure must be represented using datum labels for all pairs and vectors that appear more than once in the output.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:write-simple"><span class="sig"><var class="id">write-simple</var> <var class="arg">obj</var> <var class="dsssl">#!optional</var> <var class="arg">port</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>The write-simple procedure is the same as write, except that shared structure is never represented using datum labels. This can cause write-simple not to terminate if obj contains circular structure.</p></dd></dl>
+<dl class="defsig">
+<dt class="defsig" id="def:display"><span class="sig"><var class="id">display</var> <var class="arg">obj</var> <var class="dsssl">#!optional</var> <var class="arg">port</var></span><span class="type">procedure</span></dt>
+<dd class="defsig"><p>Writes a representation of obj to the given textual output port. Strings that appear in the written representation are output as if by write-string instead of by write. Symbols are not escaped. Character objects appear in the representation as if written by write-char instead of by write.</p><p>The display representation of other objects is unspecified. However, display must not loop forever on self-referencing pairs, vectors, or records. Thus if the normal write representation is used, datum labels are needed to represent cycles as in write.</p><p>The display procedure returns an unspecified value.</p><p>Rationale: The write procedure is intended for producing machine-readable output and display for producing human-readable output.</p></dd></dl><hr /><p>Previous: <a href="Module%20%28scheme%20time%29.html">Module (scheme time)</a></p><p>Next: <a href="Module%20%28chicken%20base%29.html">Module (chicken base)</a></p></div></div></body></html>
